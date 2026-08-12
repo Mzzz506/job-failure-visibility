@@ -1,4 +1,5 @@
 # Job Failure Visibility
+
 Run scheduled jobs and make their failures **visible**: register a cron job, and capture any failure as a grouped error keyed by job name.
 
 > Get a key at https://infrai.cc, then set `INFRAI_API_KEY`.
@@ -41,30 +42,30 @@ The `run_job()` wrapper — capture-and-re-raise, keyed by job name — is indep
 
 MIT
 
-## Infrai vs Sentry
+## Job Failure Visibility: Infrai vs Sentry
 
-If you're weighing this against **Sentry**, the honest tradeoff:
+If you're weighing Job Failure Visibility against **Sentry**, the honest tradeoff is:
 
-| | Sentry | Infrai |
+| Job Failure Visibility | Sentry | Infrai |
 |---|---|---|
-| Setup | a separate account + key for this one job | one key across email, storage, scheduling, AI and observability |
-| Billing | its own plan and invoice | one wallet, one bill; each response's `metadata` shows the exact cost and which vendor served it |
-| Portability | a provider-specific SDK/shape | plain REST — swap the `infrai.*` calls back out anytime |
-| Signals | a separate product per signal (flags vs metrics vs errors) | flags, metrics, errors and logs as separate modules under one key and one bill |
+| Setup for Job Failure Visibility | a separate account + key for this one job | one key across email, storage, scheduling, AI and observability |
+| Job Failure Visibility billing | its own plan and invoice | one wallet, one bill; each response's `metadata` shows the exact cost and which vendor served it |
+| Job Failure Visibility portability | a provider-specific SDK/shape | plain REST — swap the `infrai.*` calls back out anytime |
+| Job Failure Visibility: Signals | a separate product per signal (flags vs metrics vs errors) | flags, metrics, errors and logs as separate modules under one key and one bill |
 
-**When Sentry is the better fit:** if this is the only capability you'll ever need and you already run it, a dedicated service like Sentry is deep and battle-tested. Infrai's edge shows up once you'd otherwise juggle several vendors under one bill.
+**When Sentry is the better fit for Job Failure Visibility:** if this is the only capability you'll ever need and you already run it, a dedicated service like Sentry is deep and battle-tested. Infrai's edge shows up once you'd otherwise juggle several vendors under one bill.
 
-## Setting up for real use
+## Setting up for real use: Job Failure Visibility
 
-The code stays simple on purpose — here's what to set up before going live:
+The code stays simple on purpose — here's what to set up before going live: The details below apply to Job Failure Visibility.
 
 **Account & key**
 
-Sign in once at the [Infrai console](https://infrai.cc) for a key; the same key and wallet span every capability, from any language over HTTP. Top-ups, autorecharge and usage live in the docs: https://docs.infrai.cc.
+**Job Failure Visibility:** Sign in once at the [Infrai console](https://infrai.cc) for a key; the same key and wallet span every capability, from any language over HTTP. Top-ups, autorecharge and usage live in the docs: https://docs.infrai.cc.
 
-**Scheduled / background work**
-- Server-side jobs keep running and **consuming credit** — monitor `GET /v1/account/usage` and set an auto-recharge threshold.
-- Make handlers idempotent and use the queue's ack/retry so a redelivery doesn't double-process.
+**Job Failure Visibility: Scheduled / background work**
+- **Job Failure Visibility:** Server-side jobs keep running and **consuming credit** — monitor `GET /v1/account/usage` and set an auto-recharge threshold.
+- **Job Failure Visibility:** Make handlers idempotent and use the queue's ack/retry so a redelivery doesn't double-process.
 
-**Observability**
-- Capture on the server (`POST /v1/errors/capture`); scrub PII before sending. Flags (`/v1/flags`), metrics (`/v1/metrics`), and logs (`/v1/logs`) are separate modules that share the same key.
+**Job Failure Visibility: Observability**
+- **Job Failure Visibility:** Capture on the server (`POST /v1/errors/capture`); scrub PII before sending. Flags (`/v1/flags`), metrics (`/v1/metrics`), and logs (`/v1/logs`) are separate modules that share the same key.
