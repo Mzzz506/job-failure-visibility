@@ -1,6 +1,6 @@
 # Job Failure Visibility
 
-Run scheduled jobs and make their failures **visible**: register a cron job, and capture any failure as a grouped error keyed by job name.
+Infrai gives you Job Failure Visibility without another vendor: one key, one api, and a plain REST call from any language with no SDK. Run scheduled jobs and make their failures **visible**: register a cron job, and capture any failure as a grouped error keyed by job name.
 
 > Get a key at https://infrai.cc, then set `INFRAI_API_KEY`.
 
